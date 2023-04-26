@@ -4,7 +4,7 @@ const Maquina = require('../models/Maquina');
 module.exports = {
   async criarMaquina(req, res){
     
-    const { cod, descricao, status, linha_id } = req.body;
+    const { cod, descricao, status, linha_id, business_id, dominio_id, planta_id, unidade_operativa_id } = req.body;
 
     const linha = await Linha.findByPk(linha_id);
 
@@ -16,7 +16,11 @@ module.exports = {
       cod,
       descricao,
       linha_id,
-      status
+      status,
+      business_id,
+      dominio_id,
+      planta_id,
+      unidade_operativa_id      
     });
 
     return res.json(maquina);
@@ -37,7 +41,14 @@ module.exports = {
     const { cod } = req.params;
     
     const maquina = await Maquina.findByPk(cod, {
-      include:{association: 'linha'}
+      include:[
+        {association: 'linha'},
+        {association: 'business'},
+        {association: 'planta'},
+        {association: 'unidade_operativa'},
+        {association: 'dominio'}        
+      ]
+      
     });
 
     return res.json(maquina);

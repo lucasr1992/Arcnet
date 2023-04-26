@@ -29,6 +29,38 @@ module.exports = {
         onDelete:'RESTRICT'
       },
 
+      business_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references:{ model: "businesses", key: 'id'},
+        onUpdate:'CASCADE',
+        onDelete:'RESTRICT'
+      },
+
+      dominio_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references:{ model: "dominios", key: 'id'},
+        onUpdate:'CASCADE',
+        onDelete:'RESTRICT'
+      },
+
+      planta_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references:{ model: "planta", key: 'id'},
+        onUpdate:'CASCADE',
+        onDelete:'RESTRICT'
+      },
+
+      unidade_operativa_id:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references:{ model: "unidade_operativas", key: 'id'},
+        onUpdate:'CASCADE',
+        onDelete:'RESTRICT'
+      },
+
       status:{
         type: Sequelize.BOOLEAN,
         allowNull: false

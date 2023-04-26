@@ -15,7 +15,7 @@ module.exports={
   async buscarBusiness(req, res){
     const { cod } = req.params;
 
-    const bussines = await Business.findAll({ where: { cod: cod}})
+    const bussines = await Business.findOne({ where: { cod: cod}})
 
     return res.json(bussines);
   }
