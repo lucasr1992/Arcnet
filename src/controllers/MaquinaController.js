@@ -41,7 +41,14 @@ module.exports = {
     const { cod } = req.params;
     
     const maquina = await Maquina.findByPk(cod, {
-      include:{association: 'linha'}
+      include:[
+        {association: 'linha'},
+        {association: 'business'},
+        {association: 'planta'},
+        {association: 'unidade_operativa'},
+        {association: 'dominio'}        
+      ]
+      
     });
 
     return res.json(maquina);
