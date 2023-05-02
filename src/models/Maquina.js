@@ -6,8 +6,10 @@ class Maquina extends Model {
       cod: DataTypes.STRING,
       descricao: DataTypes.STRING,
       status: DataTypes.BOOLEAN,
+      data_proxima_att: DataTypes.DATEONLY
     }, {
-      sequelize
+      sequelize,
+      timestamps: true,
     })
   }
 
@@ -17,6 +19,9 @@ class Maquina extends Model {
     this.belongsTo(models.Planta, { foreignKey: 'planta_id', as: 'planta' });
     this.belongsTo(models.UnidadeOperativa, { foreignKey: 'unidade_operativa_id', as: 'unidade_operativa' });
     this.belongsTo(models.Dominio, { foreignKey: 'dominio_id', as: 'dominio' });
+    this.belongsTo(models.TipoEquipamentos, { foreignKey: 'tipo_id', as: 'tipo' });
+    this.belongsTo(models.Colaboradores, { foreignKey: 'responsavel_id', as: 'responsavel' });
+    this.belongsTo(models.Colaboradores, { foreignKey: 'desativador_id', as: 'desativador' });
   }
 }
 
